@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ScrumJET - Scrum and Agile Training Platform">
+    <meta name="author" content="ScrumJET">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+    <title>{% block title %}ScrumJET{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+
+    {% block styles %}{% endblock %}
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('main.index') }}">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ScrumJET" height="30">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('courses.list_courses') }}">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('articles.list_articles') }}">Articles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('events.list_events') }}">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mt-4">
+    {% block content %}
+    <!-- Content goes here -->
+    {% endblock %}
+</div>
+
+<!-- Footer -->
+<footer class="bg-light text-center text-lg-start mt-4 py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>Contact Us</h5>
+                <p>ScrumJET Campus<br>
+                    Lewsey Park, Luton, LU4 0PF<br>
+                    Phone: 03069 990636<br>
+                    Email: help@scrumjet.co.uk</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{{ url_for('main.about') }}">About Us</a></li>
+                    <li><a href="{{ url_for('main.faq') }}">FAQ</a></li>
+                    <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Follow Us</h5>
+                <a href="https://www.facebook.com"><img src="{{ url_for('static', filename='icons/facebook.svg') }}"
+                                                        alt="Facebook" width="32" height="32"></a>
+                <a href="https://www.instagram.com"><img src="{{ url_for('static', filename='icons/instagram.svg') }}"
+                                                         alt="Instagram" width="32" height="32"></a>
+                <a href="https://twitter.com"><img src="{{ url_for('static', filename='icons/twitter.svg') }}"
+                                                   alt="Twitter" width="32" height="32"></a>
+            </div>
+        </div>
+        <hr>
+        <p class="text-center"><small>&copy;
+            <script>document.write(new Date().getFullYear())</script>
+            ScrumJET</small></p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom Scripts -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>
