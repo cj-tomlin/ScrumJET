@@ -1,0 +1,79 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual Environment
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Flask specific
+instance/
+*.db
+*.sqlite3
+
+# Pytest cache
+.pytest_cache/
+.coverage
+
+# Environment variables
+.env
+*.env
+
+# Flask cache
+cache/
+*.log
+
+# Static assets cache
+staticfiles/
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# MySQL, SQLite, Postgres databases
+*.sql
+*.sqlite
+*.db
+
+# Logs and database backups
+*.log
+*.bak
+
+# Editor settings and IDE files
+/.idea/
+/.vscode/
+/.shelf/
+/workspace.xml
+/httpRequests/
+/dataSources/
+/dataSources.local.xml
+
+# MacOS specific files
+.DS_Store
+
+# Linux/Mac/Windows specific swap files
+*.swp
+*~
