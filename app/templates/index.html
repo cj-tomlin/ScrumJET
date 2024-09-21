@@ -2,169 +2,69 @@
 
 {% block styles %}
 {{ super() }}
-<link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet">
+<style>
+    .section-hero,
+    .section-features,
+    .section-popular-courses,
+    .section-announcements {
+        width: 100%;
+    }
+
+    .section-hero {
+        background-color: #f8f9fa;
+        padding: 100px 0;
+    }
+
+    .section-features {
+        background-color: #e9ecef;
+        padding: 100px 0;
+    }
+
+    .section-popular-courses {
+        background-color: #dee2e6;
+        padding: 100px 0;
+    }
+
+    .section-announcements {
+        background-color: #ced4da;
+        padding: 100px 0;
+    }
+</style>
 {% endblock %}
 
-{% block app_content %}
+{% block content %}
 
-<!-- Carousel -->
-<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-    <!-- Indicators -->
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-                aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<!-- Hero Section -->
+<div class="section-hero w-100">
+    <div class="container">
+        <h1>Welcome to ScrumJET</h1>
+        <p>Your go-to platform for Scrum and Agile training.</p>
+        <button class="btn btn-primary btn-lg">Start Learning</button>
     </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="{{ url_for('static', filename='home/slider/slider_image_1.jpg') }}" class="d-block w-100"
-                 alt="First slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h1>Welcome to ScrumJET</h1>
-                <p>Leading scrum and agile framework learning center.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="{{ url_for('static', filename='home/slider/slider_image_2.jpg') }}" class="d-block w-100"
-                 alt="Second slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h1>Find your course today!</h1>
-                <p>We have a range of certified and non-certified courses available.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Find courses</a></p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="{{ url_for('static', filename='home/slider/slider_image_3.jpg') }}" class="d-block w-100"
-                 alt="Third slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h1>Check out our blog</h1>
-                <p>Updated weekly with the latest Agile & Scrum news.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
 </div>
 
-<!-- Container for content -->
-<div class="container mt-5">
-    <!-- Marketing title -->
-    <div class="text-center">
-        <h2>Our Popular Courses</h2>
+<!-- Features Section -->
+<div class="section-features w-100">
+    <div class="container">
+        <h2>Why Choose ScrumJET?</h2>
+        <p>Explore our expert-certified courses and agile training programs.</p>
     </div>
+</div>
 
-    <div class="row text-center">
-        <div class="col-lg-3 col-sm-6">
-            <a href="{{ url_for('courses.course', id=1) }}">
-                <img src="{{ url_for('static', filename='home/learn/learn_1.jpg') }}" class="img-fluid rounded" alt="">
-                <h4 class="mt-2">Scrum Fundamentals</h4>
-                <p>This introductory course walks you through the foundations of Agile and the values of the Scrum
-                    framework.</p>
-            </a>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-            <a href="{{ url_for('courses.course', id=2) }}">
-                <img src="{{ url_for('static', filename='home/learn/learn_2.jpg') }}" class="img-fluid rounded" alt="">
-                <h4 class="mt-2">Certified Scrum Master</h4>
-                <p>Become a Certified Scrum Master and lead your team through rapid iteration cycles known as
-                    sprints.</p>
-            </a>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-            <a href="{{ url_for('courses.course', id=3) }}">
-                <img src="{{ url_for('static', filename='home/learn/learn_3.jpg') }}" class="img-fluid rounded" alt="">
-                <h4 class="mt-2">Certified Product Owner</h4>
-                <p>Master product and service development within Scrum environments as a Certified Product Owner.</p>
-            </a>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-            <a href="{{ url_for('courses.course', id=4) }}">
-                <img src="{{ url_for('static', filename='home/learn/learn_4.jpg') }}" class="img-fluid rounded" alt="">
-                <h4 class="mt-2">Certified Agile Leadership</h4>
-                <p>Learn to develop answers to compelling questions and lead with agility.</p>
-            </a>
-        </div>
+<!-- Popular Courses Section -->
+<div class="section-popular-courses w-100">
+    <div class="container">
+        <h2>Popular Courses</h2>
+        <p>See our top-rated Scrum courses.</p>
     </div>
+</div>
 
-    <!-- About Section -->
-    <div class="row align-items-center mt-5">
-        <div class="col-md-6">
-            <h2>Welcome to ScrumJET</h2>
-            <p>We are a leading scrum-specialized education center, delivering online and in-person training in Agile
-                and Scrum worldwide.</p>
-            <a class="btn btn-primary" href="{{ url_for('main.about') }}">Read more</a>
-        </div>
-        <div class="col-md-6">
-            <img src="{{ url_for('static', filename='home/about.jpg') }}" class="img-fluid" alt="ScrumJET campus">
-        </div>
+<!-- Announcements Section -->
+<div class="section-announcements w-100">
+    <div class="container">
+        <h2>Latest Announcements</h2>
+        <p>Stay up to date with our upcoming events and news.</p>
     </div>
-
-    <!-- Basics of Scrum -->
-    <div class="row mt-5">
-        <div class="col-md-8">
-            <h4>The Basics of Scrum</h4>
-            <ul class="list-unstyled">
-                <li>Scrum is a process that allows teams to build products incrementally in iterations called sprints.
-                </li>
-                <li>It enables teams to focus on delivering the highest business value in the shortest time.</li>
-                <li>The Scrum team evaluates the development daily in stand-up meetings (Daily Scrum).</li>
-                <li>Check out our courses today to learn more!</li>
-            </ul>
-        </div>
-
-        <!-- Announcements Section -->
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="text-center"><strong>Announcements</strong></h3>
-                    <ul class="list-group">
-                        {% for announcement in announcements %}
-                        <li class="list-group-item">
-                            <h4>{{ announcement.title }}</h4>
-                            <p>{{ announcement.body }}</p>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scrum Basics Image -->
-    <div class="row mt-5 mb-5">
-        <div class="col-md-8">
-            <img src="{{ url_for('static', filename='home/scrum.png') }}" class="img-fluid" alt="Scrum Cycle">
-        </div>
-    </div>
-
-    <!-- Become a CSM Section -->
-    <div class="container-fluid bg-light text-center py-5">
-        <h3>— Become a Certified Scrum Master! —</h3>
-        <div class="row">
-            <div class="col-lg-4">
-                <h4>Learn</h4>
-                <p>Gain an understanding of agile project management and the scrum framework.</p>
-            </div>
-            <div class="col-lg-4">
-                <h4>Teach</h4>
-                <p>Become certified to teach Scrum or advance to become a Certified Scrum Practitioner or Trainer.</p>
-            </div>
-            <div class="col-lg-4">
-                <h4>Lead</h4>
-                <p>Learn how to guide your team in the agile way and influence organizational change.</p>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 {% endblock %}
