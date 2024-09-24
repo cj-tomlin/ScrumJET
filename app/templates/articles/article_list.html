@@ -1,10 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Our Articles</h2>
+
+    <div class="row mt-4">
+        <!-- Filter panel should always be shown -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Filter Articles</h4>
+                </div>
+                <div class="card-body">
+                    <form method="GET" action="{{ url_for('articles.list_articles') }}">
+                        <!-- Article Category Filter -->
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Article Category</label>
+                            <select name="category" id="category" class="form-select">
+                                <option value="">All Categories</option>
+                                <option value="scrum">Scrum</option>
+                                <option value="agile">Agile</option>
+                                <option value="framework">Framework</option>
+                            </select>
+                        </div>
+
+                        <!-- Date Filter -->
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Published Date</label>
+                            <input type="date" name="date" class="form-control">
+                        </div>
+
+                        <!-- Sort Filter -->
+                        <div class="mb-3">
+                            <label for="sort" class="form-label">Sort by</label>
+                            <select name="sort" id="sort" class="form-select">
+                                <option value="date">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                                <option value="popular">Most Popular</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Articles Section: Show either articles or a 'no articles' message -->
+        <div class="col-md-9">
+            {% if articles %}
+            <div class="row">
+                <!-- Loop through articles and display them in a grid -->
+                {% for article in articles %}
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ url_for('static', filename=article.image) }}" class="card-img-top"
+                             alt="{{ article.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.title }}</h5>
+                            <p class="card-text">{{ article.summary[:100] }}...</p> <!-- Limit text length -->
+                            <p class="card-text"><strong>Published: </strong>{{ article.published_date }}</p>
+                            <a href="{{ url_for('articles.article_detail', id=article.id) }}"
+                               class="btn btn-primary w-100">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <!-- Show this message if there are no articles -->
+            <div class="text-center py-5">
+                <p class="lead">No articles available at the moment. Please check back later or try adjusting your
+                    filters.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
