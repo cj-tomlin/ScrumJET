@@ -10,7 +10,7 @@ services:
       - FLASK_ENV=development
       - FLASK_DEBUG=1
       - DATABASE_URL=postgresql://postgres:postgres@db/scrumjet
-      - SECRET_KEY=b74cbe400be677ef6b4f21602d4899988a0eec844b06eab306cbba0cf2e07ea5
+      - SECRET_KEY=your-super-secret-key
     volumes:
       - .:/app
       - ./uploads:/app/uploads
