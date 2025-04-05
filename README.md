@@ -28,11 +28,9 @@ ScrumJET is an online training course platform specializing in Scrum and Agile m
 
 ## Installation
 
-### Using Poetry
-
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/ScrumJET-v2.git
+   git clone https://github.com/cj-tomlin/ScrumJET-v2.git
    cd ScrumJET-v2
    ```
 
@@ -45,63 +43,46 @@ ScrumJET is an online training course platform specializing in Scrum and Agile m
    curl -sSL https://install.python-poetry.org | python3 -
    ```
 
-3. Install dependencies:
+3. Install dependencies and set up the project:
    ```
-   poetry install
-   ```
-
-4. Activate the virtual environment:
-   ```
-   poetry shell
+   make setup-dev # Install Poetry dependencies and pre-commit hooks
+   make build     # Build Docker containers
+   make init      # Start containers, initialize DB, and load sample data
    ```
 
-5. Set up PostgreSQL:
-   - Install PostgreSQL if you haven't already
-   - Create a database named `scrumjet_dev`
-   - Update the `.env` file with your database credentials
+   This will:
+   - Install Poetry dependencies
+   - Build and start Docker containers
+   - Initialize the database
+   - Apply migrations
+   - Load sample data
 
-6. Initialize the database:
-   ```
-   flask db init
-   flask db migrate -m "Initial migration"
-   flask db upgrade
-   ```
+4. Access the application at http://localhost:5000
 
-7. Load sample data (optional):
-   ```
-   python scripts/init_db.py
-   ```
+## Available Make Commands
 
-8. Run the application:
-   ```
-   flask run
-   ```
+The project includes a Makefile with common commands to simplify development:
 
-9. Access the application at http://localhost:5000
+```
+make setup      # Install Poetry dependencies
+make setup-dev  # Setup development environment with pre-commit hooks
+make build      # Build Docker containers
+make up         # Start Docker containers
+make down       # Stop Docker containers
+make db-init    # Initialize the database
+make db-migrate # Create a database migration (use message="Your message")
+make db-upgrade # Apply database migrations
+make load-data  # Load sample data
+make logs       # View Docker logs
+make shell      # Access shell in web container
+make init       # Initialize everything (start containers, setup DB, load data)
+make format     # Format code with ruff
+make lint       # Lint code with ruff
+make install-hooks # Install pre-commit hooks
+make run-hooks    # Run pre-commit hooks on all files
+make help       # Show all available commands
+```
 
-### Alternative: Using venv
-
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/ScrumJET-v2.git
-   cd ScrumJET-v2
-   ```
-
-2. Create and activate a virtual environment:
-   ```
-   python -m venv .venv
-   # On Windows
-   .venv\Scripts\activate
-   # On macOS/Linux
-   source .venv/bin/activate
-   ```
-
-3. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-
-4. Follow steps 5-9 from the Poetry installation instructions above.
 
 ## Development
 
@@ -118,58 +99,58 @@ poetry add package-name --dev  # For development dependencies
 After making changes to the models, create a new migration:
 
 ```
-flask db migrate -m "Description of changes"
-flask db upgrade
+make db-migrate message="Description of changes"
+make db-upgrade
 ```
 
 ### Running Tests
 
-```
-pytest
-```
+*Note: Tests will be added in the future.*
 
-### Code Formatting
+### Code Formatting and Linting
+
+The project uses [ruff](https://github.com/charliermarsh/ruff) for code formatting and linting, configured with pre-commit hooks:
 
 ```
-black app
+# Install pre-commit hooks
+make install-hooks
+
+# Run pre-commit hooks manually on all files
+make run-hooks
+
+# Format code with ruff
+make format
+
+# Lint code with ruff
+make lint
 ```
 
 ## Deployment
 
 ### Docker
 
-1. Build the Docker image:
+The application is configured for Docker deployment:
+
+1. For production deployment, you may want to modify the environment variables in docker-compose.yml:
    ```
-   docker build -t scrumjet .
+   FLASK_ENV=production
+   FLASK_DEBUG=0
    ```
 
-2. Run the container:
+2. Build and deploy the Docker containers:
    ```
-   docker run -p 5000:5000 scrumjet
-   ```
-
-### Heroku
-
-1. Create a Heroku app:
-   ```
-   heroku create scrumjet
+   make build
+   make up
    ```
 
-2. Add PostgreSQL addon:
+3. Initialize the database (if needed):
    ```
-   heroku addons:create heroku-postgresql:hobby-dev
-   ```
-
-3. Set environment variables:
-   ```
-   heroku config:set SECRET_KEY=your-secret-key
-   heroku config:set FLASK_APP=run.py
+   make db-upgrade
    ```
 
-4. Deploy:
-   ```
-   git push heroku main
-   ```
+### Planned Improvements
+
+- Adding comprehensive test suite
 
 ## License
 
