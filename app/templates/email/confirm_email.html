@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Your Email</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ScrumJET</h1>
+    </div>
+    <div class="content">
+        <p>Dear {{ user.first_name }},</p>
+        <p>Welcome to ScrumJET! To confirm your email address, please click on the following link:</p>
+        <p>
+            <a class="button" href="{{ url_for('auth.confirm_email', token=token, _external=True) }}">
+                Confirm Your Email
+            </a>
+        </p>
+        <p>Alternatively, you can paste the following link in your browser's address bar:</p>
+        <p>{{ url_for('auth.confirm_email', token=token, _external=True) }}</p>
+        <p>This link will expire in 24 hours.</p>
+        <p>Sincerely,</p>
+        <p>The ScrumJET Team</p>
+    </div>
+    <div class="footer">
+        <p>This is an automated message, please do not reply to this email.</p>
+        <p>&copy; {{ now.year }} ScrumJET. All rights reserved.</p>
+    </div>
+</body>
+</html>

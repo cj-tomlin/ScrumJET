@@ -1,0 +1,155 @@
+/* Main CSS file for ScrumJET */
+
+/* Custom variables */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+}
+
+/* General styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header styles */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+    max-height: 40px;
+}
+
+/* Footer styles */
+footer {
+    background-color: var(--light-color);
+    border-top: 1px solid #e9ecef;
+}
+
+/* Card styles */
+.card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    border-bottom: none;
+}
+
+/* Button styles */
+.btn {
+    border-radius: 0.3rem;
+    padding: 0.5rem 1.5rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+/* Form styles */
+.form-control {
+    border-radius: 0.3rem;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Alert styles */
+.alert {
+    border-radius: 0.3rem;
+}
+
+/* Profile page styles */
+.profile-header {
+    background-color: var(--light-color);
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Course card styles */
+.course-card {
+    height: 100%;
+}
+
+.course-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.course-price {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.course-rating {
+    color: #ffc107;
+}
+
+/* Article card styles */
+.article-card {
+    height: 100%;
+}
+
+.article-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.article-meta {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+/* Event card styles */
+.event-card {
+    height: 100%;
+}
+
+.event-date {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.event-location {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+    }
+}

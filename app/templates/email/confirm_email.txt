@@ -1,0 +1,10 @@
+Dear {{ user.first_name }},
+
+Welcome to ScrumJET! To confirm your email address, please click on the following link:
+
+{{ url_for('auth.confirm_email', token=token, _external=True) }}
+
+This link will expire in 24 hours.
+
+Sincerely,
+The ScrumJET Team

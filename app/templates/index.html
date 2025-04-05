@@ -1,70 +1,82 @@
 {% extends "base.html" %}
 
-{% block styles %}
-{{ super() }}
-<style>
-    .section-hero,
-    .section-features,
-    .section-popular-courses,
-    .section-announcements {
-        width: 100%;
-    }
-
-    .section-hero {
-        background-color: #f8f9fa;
-        padding: 100px 0;
-    }
-
-    .section-features {
-        background-color: #e9ecef;
-        padding: 100px 0;
-    }
-
-    .section-popular-courses {
-        background-color: #dee2e6;
-        padding: 100px 0;
-    }
-
-    .section-announcements {
-        background-color: #ced4da;
-        padding: 100px 0;
-    }
-</style>
-{% endblock %}
+{% block title %}ScrumJET - Home{% endblock %}
 
 {% block content %}
-
-<!-- Hero Section -->
-<div class="section-hero w-100">
-    <div class="container">
-        <h1>Welcome to ScrumJET</h1>
-        <p>Your go-to platform for Scrum and Agile training.</p>
-        <button class="btn btn-primary btn-lg">Start Learning</button>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12 text-center mb-5">
+            <h1 class="display-4">Welcome to ScrumJET</h1>
+            <p class="lead">Your premier platform for Scrum and Agile methodology training.</p>
+            {% if current_user.is_authenticated %}
+                <p>Hello, {{ current_user.first_name }}! Welcome back.</p>
+                {% if not current_user.email_confirmed %}
+                    <div class="alert alert-warning">
+                        Your email is not confirmed. Please check your inbox or 
+                        <a href="{{ url_for('auth.resend_confirmation') }}">click here</a> to resend the confirmation email.
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="mt-4">
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-primary me-2">Sign In</a>
+                    <a href="{{ url_for('auth.register') }}" class="btn btn-outline-primary">Register</a>
+                </div>
+            {% endif %}
+        </div>
     </div>
-</div>
 
-<!-- Features Section -->
-<div class="section-features w-100">
-    <div class="container">
-        <h2>Why Choose ScrumJET?</h2>
-        <p>Explore our expert-certified courses and agile training programs.</p>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-book display-4 text-primary mb-3"></i>
+                    <h3>Courses</h3>
+                    <p>Explore our comprehensive range of Scrum and Agile methodology courses.</p>
+                    <a href="{{ url_for('courses.list_courses') }}" class="btn btn-outline-primary">Browse Courses</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-newspaper display-4 text-primary mb-3"></i>
+                    <h3>Articles</h3>
+                    <p>Read the latest articles and insights about Scrum and Agile methodologies.</p>
+                    <a href="{{ url_for('articles.list_articles') }}" class="btn btn-outline-primary">Read Articles</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-calendar-event display-4 text-primary mb-3"></i>
+                    <h3>Events</h3>
+                    <p>Join our upcoming events, workshops, and webinars on Scrum and Agile.</p>
+                    <a href="{{ url_for('events.list_events') }}" class="btn btn-outline-primary">View Events</a>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
-<!-- Popular Courses Section -->
-<div class="section-popular-courses w-100">
-    <div class="container">
-        <h2>Popular Courses</h2>
-        <p>See our top-rated Scrum courses.</p>
+    
+    {% if announcements %}
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h2 class="text-center mb-4">Announcements</h2>
+            {% for announcement in announcements %}
+                <div class="card mb-3 shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">{{ announcement.title }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>{{ announcement.body }}</p>
+                        <small class="text-muted">Posted on {{ announcement.created_at.strftime('%B %d, %Y') }}</small>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
+    {% endif %}
 </div>
-
-<!-- Announcements Section -->
-<div class="section-announcements w-100">
-    <div class="container">
-        <h2>Latest Announcements</h2>
-        <p>Stay up to date with our upcoming events and news.</p>
-    </div>
-</div>
-
 {% endblock %}

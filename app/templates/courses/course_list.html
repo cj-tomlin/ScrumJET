@@ -1,82 +1,53 @@
 {% extends "base.html" %}
 
+{% block title %}ScrumJET - Courses{% endblock %}
+
 {% block content %}
-<div class="container mt-4">
-    <h2 class="text-center">Our Courses</h2>
-
-    <div class="row mt-4">
-        <!-- Filter panel should always be shown -->
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="mb-0">Filter Courses</h4>
-                </div>
-                <div class="card-body">
-                    <form method="GET" action="{{ url_for('courses.list_courses') }}">
-                        <!-- Course Category Filter -->
-                        <div class="mb-3">
-                            <label for="category" class="form-label">Course Category</label>
-                            <select name="category" id="category" class="form-select">
-                                <option value="">All Categories</option>
-                                <option value="certified">Certified</option>
-                                <option value="non-certified">Non-Certified</option>
-                            </select>
-                        </div>
-
-                        <!-- Price Range Filter -->
-                        <div class="mb-3">
-                            <label for="price" class="form-label">Price Range</label>
-                            <input type="number" name="min_price" class="form-control" placeholder="Min Price">
-                            <input type="number" name="max_price" class="form-control mt-2" placeholder="Max Price">
-                        </div>
-
-                        <!-- Sort Filter -->
-                        <div class="mb-3">
-                            <label for="sort" class="form-label">Sort by</label>
-                            <select name="sort" id="sort" class="form-select">
-                                <option value="date">Newest First</option>
-                                <option value="price_asc">Price: Low to High</option>
-                                <option value="price_desc">Price: High to Low</option>
-                                <option value="popular">Most Popular</option>
-                            </select>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- Courses Section: Show either courses or a 'no courses' message -->
-        <div class="col-md-9">
-            {% if courses %}
-            <div class="row">
-                <!-- Loop through courses and display them in a grid -->
-                {% for course in courses %}
+<div class="container py-5">
+    <h1 class="mb-4">Courses</h1>
+    
+    {% if courses %}
+        <div class="row">
+            {% for course in courses %}
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <img src="{{ url_for('static', filename=course.image) }}" class="card-img-top"
-                             alt="{{ course.title }}">
+                    <div class="card h-100 shadow course-card">
+                        {% if course.image %}
+                            <img src="{{ url_for('static', filename=course.image) }}" class="card-img-top" alt="{{ course.title }}">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='images/course-placeholder.jpg') }}" class="card-img-top" alt="{{ course.title }}">
+                        {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ course.title }}</h5>
-                            <p class="card-text">{{ course.summary[:100] }}...</p> <!-- Limit text length -->
-                            <p class="card-text"><strong>Price: </strong>${{ course.price }}</p>
-                            <p class="card-text"><strong>Rating: </strong>{{ course.average_rating }} / 5</p>
-                            <a href="{{ url_for('courses.course_detail', id=course.id) }}"
-                               class="btn btn-primary w-100">Learn More</a>
+                            <p class="card-text">{{ course.summary }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="course-price">${{ "%.2f"|format(course.price) }}</span>
+                                {% if course.average_rating > 0 %}
+                                    <div class="course-rating">
+                                        {% for i in range(5) %}
+                                            {% if i < course.average_rating|int %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% elif i < course.average_rating|round(0, 'ceil')|int %}
+                                                <i class="bi bi-star-half"></i>
+                                            {% else %}
+                                                <i class="bi bi-star"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <small class="text-muted">({{ course.reviews.count() }})</small>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <a href="{{ url_for('courses.course_detail', id=course.id) }}" class="btn btn-primary">View Course</a>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
-            </div>
-            {% else %}
-            <!-- Show this message if there are no courses -->
-            <div class="text-center py-5">
-                <p class="lead">No courses available at the moment. Please check back later or try adjusting your
-                    filters.</p>
-            </div>
-            {% endif %}
+            {% endfor %}
         </div>
-    </div>
+    {% else %}
+        <div class="alert alert-info">
+            <p>No courses available at the moment. Please check back later.</p>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

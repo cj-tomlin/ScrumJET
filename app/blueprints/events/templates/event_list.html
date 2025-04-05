@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Upcoming Events</h2>
+
+    <!-- Filter Section -->
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <h4>Filter Events</h4>
+            <form id="filter-form">
+                <!-- Event Type Filter -->
+                <div class="mb-3">
+                    <label for="event-type" class="form-label">Event Type</label>
+                    <select class="form-select" id="event-type">
+                        <option value="all" selected>All</option>
+                        <option value="certified">Certified Courses</option>
+                        <option value="seminar">Free Seminars</option>
+                        <option value="conference">Conferences</option>
+                    </select>
+                </div>
+
+                <!-- Location Filter -->
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <select class="form-select" id="location">
+                        <option value="all" selected>All Locations</option>
+                        <option value="online">Online</option>
+                        <option value="in-person">In-Person</option>
+                        <option value="hybrid">Hybrid</option>
+                    </select>
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="filterEvents()">Apply Filters</button>
+            </form>
+        </div>
+
+        <!-- Calendar Section -->
+        <div class="col-md-9">
+            <div id="calendar"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<!-- Include FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.0.0/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.0.0/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.0.0/main.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            events: '/api/events',  // Load events dynamically from your backend API
+            eventClick: function (info) {
+                // Open a modal or expand section with event details
+                alert('Event: ' + info.event.title);
+            },
+        });
+
+        calendar.render();
+    });
+
+    function filterEvents() {
+        // Fetch and apply filters
+        var eventType = document.getElementById("event-type").value;
+        var location = document.getElementById("location").value;
+
+        // You can modify the event fetch URL or dynamically filter events based on the selected criteria
+        // Example: calendar.refetchEvents()
+    }
+</script>
+{% endblock %}

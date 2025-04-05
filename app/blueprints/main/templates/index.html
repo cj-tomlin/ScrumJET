@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{{ super() }}
+<style>
+    .section-hero,
+    .section-features,
+    .section-popular-courses,
+    .section-announcements {
+        width: 100%;
+    }
+
+    .section-hero {
+        background-color: #f8f9fa;
+        padding: 100px 0;
+    }
+
+    .section-features {
+        background-color: #e9ecef;
+        padding: 100px 0;
+    }
+
+    .section-popular-courses {
+        background-color: #dee2e6;
+        padding: 100px 0;
+    }
+
+    .section-announcements {
+        background-color: #ced4da;
+        padding: 100px 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="section-hero w-100">
+    <div class="container">
+        <h1>Welcome to ScrumJET</h1>
+        <p>Your go-to platform for Scrum and Agile training.</p>
+        <button class="btn btn-primary btn-lg">Start Learning</button>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="section-features w-100">
+    <div class="container">
+        <h2>Why Choose ScrumJET?</h2>
+        <p>Explore our expert-certified courses and agile training programs.</p>
+    </div>
+</div>
+
+<!-- Popular Courses Section -->
+<div class="section-popular-courses w-100">
+    <div class="container">
+        <h2>Popular Courses</h2>
+        <p>See our top-rated Scrum courses.</p>
+    </div>
+</div>
+
+<!-- Announcements Section -->
+<div class="section-announcements w-100">
+    <div class="container">
+        <h2>Latest Announcements</h2>
+        <p>Stay up to date with our upcoming events and news.</p>
+    </div>
+</div>
+
+{% endblock %}

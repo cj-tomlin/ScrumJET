@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "scrumjet-v2"
+version = "0.1.0"
+description = "ScrumJET - Scrum and Agile Training Platform"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+packages = [{include = "app"}]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.9"
+flask = "^3.0.3"
+flask-sqlalchemy = "^3.1.1"
+flask-login = "^0.6.3"
+flask-migrate = "^4.0.7"
+flask-wtf = "^1.2.1"
+flask-mail = "^0.9.1"
+email-validator = "^2.1.1"
+python-dotenv = "^1.0.1"
+psycopg2-binary = "^2.9.9"
+pillow = "^10.2.0"
+jwt = "^1.3.1"
+watchdog = "^5.0.2"
+gunicorn = "^21.2.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+black = "^23.7.0"
+flake8 = "^6.1.0"
+pytest-cov = "^4.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"

@@ -1,3 +1,7 @@
+# Git
+.git
+.gitignore
+
 # Python
 __pycache__/
 *.py[cod]
@@ -20,19 +24,10 @@ var/
 .installed.cfg
 *.egg
 
-# Flask
-instance/
-.webassets-cache
-.env
-
 # Virtual Environment
 venv/
 ENV/
 .venv/
-
-# Database
-*.db
-*.sqlite3
 
 # IDE
 .idea/
@@ -40,12 +35,12 @@ ENV/
 *.swp
 *.swo
 
-# OS
-.DS_Store
-Thumbs.db
-
 # Uploads
 uploads/
+
+# Database
+*.db
+*.sqlite3
 
 # Logs
 logs/
@@ -57,3 +52,18 @@ htmlcov/
 
 # Pytest
 .pytest_cache/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Documentation
+docs/
