@@ -1,6 +1,6 @@
 # ScrumJET
 
-ScrumJET is an online training course platform specializing in Scrum and Agile methodology courses. This is version 2 of the application, rebuilt from scratch with modern technologies.
+ScrumJET is an online training course platform specializing in Scrum and Agile methodology courses. This is version 2 of the application, rebuilt with modern technologies.
 
 ## Features
 
