@@ -30,8 +30,8 @@ ScrumJET is an online training course platform specializing in Scrum and Agile m
 
 1. Clone the repository:
    ```
-   git clone https://github.com/cj-tomlin/ScrumJET-v2.git
-   cd ScrumJET-v2
+   git clone https://github.com/cj-tomlin/ScrumJET.git
+   cd ScrumJET
    ```
 
 2. Install Poetry if you haven't already:
